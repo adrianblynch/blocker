@@ -112,21 +112,6 @@ class Grid {
 		}, {})
 	}
 
-	getHighestX() {
-		return this.blocks
-			.reduce((count, block) =>
-				Math.max(count, block.x)
-			, -1)
-	}
-
-	remove(x, y) {
-		this.blocks.forEach(block => {
-			if (block.x === x && block.y === y) {
-				block.kill()
-			}
-		})
-	}
-
 	refresh(direction = 'down') {
 
 		// Parse the blocks and close any gaps in columns
