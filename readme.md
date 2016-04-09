@@ -4,6 +4,8 @@ A Tetris/Bubble Witch-like game.
 
 Uses Babel in the browser for ES2016 JavaScript goodness.
 
+Have a [quick look here](http://adrianblynch.github.io/blocker/).
+
 ## To start
 
 Get the code `git clone https://github.com/adrianblynch/blocker`
