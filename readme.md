@@ -37,3 +37,5 @@ Blocks are stored in the `Grid` in an array but this doesn't matter for their po
 ```
 
 `Game.render()` takes the blocks and positions them on screen, or not if they're dead.
+
+Due to blocks not being stored in a 2D array, accessing blocks means a complete pass through of the blocks array each time.
