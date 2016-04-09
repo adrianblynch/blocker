@@ -1,0 +1,14 @@
+body {
+	background-color: #555;
+}
+
+.block {
+	position: absolute;
+	background-color: #ccc;
+	border: solid 0px black;
+	cursor: pointer;
+}
+
+.block.dead {
+	opacity: 0;
+}
