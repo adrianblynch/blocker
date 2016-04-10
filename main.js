@@ -6,6 +6,7 @@ class Game {
 		this.el = el
 		this.blockWidth = 100
 		this.blockHeight = 100
+		this.clicks = 0
 
 		for (let x = 0; x < columns; x++) {
 			for (let y = 0; y < rows; y++) {
@@ -22,7 +23,7 @@ class Game {
 	}
 
 	blockClicked(event, block) {
-
+		this.clicks++
 		this.grid.getConnectedBlocks(block).map(block => block.kill())
 		this.grid.refresh()
 		this.renderGrid()
@@ -43,16 +44,46 @@ class Game {
 				blockEl.style.left = (block.x * this.blockWidth) + 'px'
 				blockEl.style.top = (block.y * this.blockHeight) + 'px'
 				blockEl.style.backgroundColor = block.colour
+				// Debug the coords
+				// blockEl.innerHTML = '<span style="background-color: #000">' + [block.x, block.y] + '</span>'
 				blockEl.addEventListener('click', event => this.blockClicked(event, block));
 				el.appendChild(blockEl)
 			}
 
 		})
 
+		if (this.isGameOver()) {
+			this.renderGameOver()
+		}
+
+	}
+
+	renderGameOver(el = this.el) {
+
+		el.innerHTML = ''
+
+		const endScreenEl = document.createElement('div')
+		endScreenEl.innerHTML = `
+			<p>GAME OVER</p>
+			<p>Blocks: ${ this.grid.blocks.length }</p>
+			<p>Clicks: ${ this.clicks }</p>
+			<p>Ratio: ${ this.getClickRatio() }</p>
+			<p><a href="">Play again</a></p>
+		`
+		el.appendChild(endScreenEl)
+
+	}
+
+	getClickRatio() {
+		return this.clicks / this.grid.blocks.length
 	}
 
 	start() {
 		this.renderGrid()
+	}
+
+	isGameOver() {
+		return this.grid.isEmpty()
 	}
 
 }
@@ -141,6 +172,10 @@ class Grid {
 
 	}
 
+	isEmpty() {
+		return this.blocks.filter(block => block.live).length === 0
+	}
+
 }
 
 class Block {
@@ -158,5 +193,5 @@ class Block {
 
 }
 
-const game = new Game(6, 6, document.getElementById('grid'))
+const game = new Game(5, 5, document.getElementById('game'))
 game.start()

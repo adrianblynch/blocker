@@ -1,5 +1,8 @@
 body {
-	background-color: #555;
+	font-family: 'Press Start 2P', cursive;
+	color: #eee;
+	background-color: #000;
+	text-align: center; /* Don't judge me! */
 }
 
 .block {
